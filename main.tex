@@ -1,0 +1,318 @@
+%-------------------------
+% Resume in Latex
+% Author : Sourabh Bajaj + some brand new features from Mary Feofanova + some changes by Muhammadjon Hakimov
+% Sourabh's: https://github.com/sb2nov/resume
+% Mary's: https://github.com/mary3000/resume
+% Muhammadjon's: https://github.com/mrhakimov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+\usepackage{xcolor}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{makecell}
+\usepackage[link=off]{phonenumbers}
+\usepackage{ragged2e}
+\usepackage{latexsym}
+%\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\usepackage[margin=0.3in]{geometry}
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.0in}
+\addtolength{\evensidemargin}{-0.0in}
+\addtolength{\textwidth}{0in}
+\addtolength{\topmargin}{10pt}
+\addtolength{\textheight}{0.0in}
+
+\urlstyle{same}
+
+% http://ctan.org/pkg/xcolor
+\usepackage{hyperref} % http://ctan.org/pkg/hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!red,
+  linkbordercolor=red,
+  urlcolor=black!70!black,
+  pdfnewwindow=true
+}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+%-------------------------
+% Custom commands
+\def \ifempty#1{\def\temp{#1} \ifx\temp\empty }
+
+\newcommand{\resumeItem}[2]{
+  \item\small{
+  	\ifempty{#1}#2\else\textbf{#1}{: #2 \vspace{-2pt}}\fi
+  }
+}
+
+\usepackage[dvipsnames]{xcolor}
+\definecolor{mygray}{gray}{0}
+\usepackage{fancybox}
+
+\usepackage{lmodern}
+\usepackage{tikz}
+
+% Style definition
+\tikzset{rndblock/.style={rounded corners,rectangle,draw,outer sep=0pt}}
+
+% Command Definition
+% 1 optional to customize the aspect, 2 mandatory: text to be framed
+\newcommand{\tframed}[2][]{\tikz[baseline=(h.base)]\node[rndblock,#1] (h) {\color{black}{#2}};}
+
+\newcommand*{\mystrut}{\rule[-0.2\baselineskip]{0pt}{0.8\baselineskip}}
+\newcommand{\skill}[1]{\tframed[lightgray]{\mystrut#1}}
+
+
+\newcommand{\resumeSubheading}[4]{
+  \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \vspace{-12pt}\textbf{#3} & \textcolor{mygray}{\textit{\small #2}} \\
+      \textit{\small#1} & \textcolor{mygray}{\textit{\small #4}} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeExpSubheading}[5]{
+  \vspace{3pt}
+  \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \vspace{2pt} \textbf{#1}  & \textcolor{mygray}{\small #2} \\
+      \textit{#3} & \textcolor{mygray}{\textit{\small #4}} \\
+      {\scriptsize#5}
+    \end{tabular*}\vspace{3pt}
+}
+
+\newcommand{\resumeExpJointSubheading}[5]{
+  \vspace{-14pt}
+  \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \vspace{2pt} \textbf{#1}  & \textcolor{mygray}{\small #2} \\
+      \textit{#3} & \textcolor{mygray}{\textit{\small #4}} \\
+      {\scriptsize#5}
+    \end{tabular*}\vspace{3pt}
+}
+
+\newcommand{\resumeProjSubheading}[5]{
+  \vspace{-10pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \vspace{2pt} \textbf{#1}  & \textcolor{mygray}{\small #2} \\
+      \textbf{#3} & \textcolor{mygray}{\textit{\small #4}} \\
+      {\scriptsize#5}
+    \end{tabular*}\vspace{3pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.2in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\usepackage{changepage}
+\newcommand{\resumeDesc}[1]{\begin{adjustwidth}{5pt}{0pt}\vspace{-2pt}{#1}\end{adjustwidth}}
+
+\newcommand{\ExternalLink}{
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{
+        \begin{scope}[x=1ex, y=1ex]
+            \clip (-0.1,-0.1)
+                --++ (-0, 1.2)
+                --++ (0.6, 0)
+                --++ (0, -0.6)
+                --++ (0.6, 0)
+                --++ (0, -1);
+            \path[draw,
+                line width = 0.5,
+                rounded corners=0.5]
+                (0,0) rectangle (1,1);
+        \end{scope}
+        \path[draw, line width = 0.5] (0.5, 0.5)
+            -- (1, 1);
+        \path[draw, line width = 0.5] (0.6, 1)
+            -- (1, 1) -- (1, 0.6);
+        }
+    }
+
+\definecolor{Blue1}{HTML}{4D4EDC}
+\newcommand{\MYhref}[3][Blue1]{\href{#2}{\color{#1}{#3}}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%----------HEADING-----------------
+
+\begin{center}\textbf{\Large Konstantin Korolev}\end{center}
+\vspace{-12pt}
+\begin{center}
+Email: \MYhref{mailto:korolev.konstantin.v@gmail.com}{korolev.konstantin.v@gmail.com} \quad
+LinkedIn: \MYhref{https://www.linkedin.com/in/korolevk/}{korolevk} \quad
+GitHub: \MYhref{https://github.com/advpropsys}{advpropsys} \quad
+Telegram: \MYhref{https://t.me/advprop}{advprop}
+\end{center}
+
+%-----------SUMMARY-----------------
+\vspace{-10pt}
+\section{Summary}
+\resumeSubHeadingListStart
+\justifying
+Machine Learning Research Engineer with commercial experience passionate about implementing creative, novel solutions in ML and quantitative research. Love startup culture, data science and good coffee.
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------------
+\vspace{-5pt}
+\section{Experience}
+\justifying
+  \resumeSubHeadingListStart
+
+    \resumeExpSubheading
+        {\href{https://alberblanc.com}{Alber Blanc - HFT Company\ExternalLink}}{Remote / SPB / Lugano, Switzerland}
+        {Data Engineer}{July 2024 --- Present}
+        {\skill{Python} \skill{Agents} \skill{Databases} \skill{OSINT}}
+        \resumeDesc{
+        \begin{itemize}
+            \item Creating custom pipelines for web scraping and searching for unique events.
+            \item Developed HR pipeline analytics; built an agent-based flow that analyzed 2k+ resumes and provided feedback.
+        \end{itemize}}
+      \resumeExpSubheading
+        {\href{https://huggingface.co/Vikhrmodels}{VikhrModels \ExternalLink}}{Remote}
+        {Machine Learning Research Engineer}{April 2024 - Present}
+        {\skill{Python} \skill{TRL} \skill{Torch} \skill{Infra}}
+        \resumeDesc{
+        \begin{itemize}
+            \item Developing best-in-class large language models for specific languages.
+            \item Conducting post-training research and inference optimization for medium-sized models.
+            \item Created more than 50 high-quality synthetic datasets.
+            \item Developed the most popular LLM benchmark for the Russian language, \textbf{Arena\_Hard}, as part of the team.
+            \item 100k+ downloads, 200+ HF likes, 100+ GitHub stars.
+        \end{itemize}}
+      \resumeExpSubheading
+{\href{https://houseofpitch.app}{House of Pitch - Backed by Libermans Brothers, Stanford\ExternalLink}}{Remote / Los Angeles, USA}
+{Machine Learning Engineer}{July 2023 --- July 2024}
+{\skill{Python} \skill{Pandas} \skill{PyTorch} \skill{FastAPI} \skill{Databases} \skill{Docker} \skill{CI/CD} \skill{Prefect}}
+\resumeDesc{
+\begin{itemize}
+    \item Executed data engineering and mining tasks—including website scraping, dataset creation, data validation, API reverse engineering, and data pre-processing to achieve speeds of up to 800 articles per minute, outperforming open-source web scrapers.
+    \item Developed a custom gradient-free ranking algorithm for sparse user-user interactions, leading to a 60\% improvement in key performance metrics.
+    \item Tuned language model ensembles for pitch analysis.
+\end{itemize}}
+     \resumeExpSubheading
+{\href{https://moex.com}{MOEX (HSE Lab)\ExternalLink}}{Remote / Moscow, Russia}
+{Quantitative Researcher Intern}{Nov 2023}
+{\skill{Python} \skill{Pandas} \skill{XGBoost} \skill{LightGBM} \skill{CatBoost}}
+\resumeDesc{
+\begin{itemize}
+    \item Performed pre- and post-processing of Crypto trade data, generated features, and built a market model.
+    \item Tasked with processing Binance order book data and researching the Lead-Lag market model, achieving results comparable to those in \href{https://arxiv.org/abs/2108.09750}{this paper}\ExternalLink.
+\end{itemize}}
+
+
+  %   \resumeExpSubheading
+  %     {\href{https://disney.fandom.com/wiki/Wonderland}{Shchmoogle --- largest technology company in Wonderland \ExternalLink}}{Tamarama, Wonderland}
+  %     {Software Engineer at Advertising Agency Accounts Team}{Jul 2021 --- Mar 2022}
+  %     {\skill{Go} \skill{Python} \skill{Docker} \skill{asyncio} \skill{RabbitMQ} \skill{Celery} \skill{Databases}}
+  %     \resumeDesc{
+  %     \begin{itemize}
+  %         \item Avoided unnecessary service re-deployments and reduced the time of metadata editing for the revenue calculators a few times by migrating all metadata from raw strings in the code to the real-time config
+  %         \item Provided timely updates to access rights by automating the process of manual access rights granting and revoking by implementing \underline{Celery} task that periodically replicates changes from different sources to the local database
+  %     \end{itemize}}
+
+  %   \resumeExpJointSubheading
+  %     {}{}
+  %     {Software Engineer Intern at Data Transfer Team}{Nov 2020 --- May 2021}
+  %     {\skill{Go} \skill{C++} \skill{SQL} \skill{Databases}}
+  %     \resumeDesc{
+  %     \begin{itemize}
+  %         \item Implemented client and resource management side functionality to set limits on RAM for end-to-end transfers that allowed to manage resources more flexibly, \textbf{saved 800 GB of RAM usage} in total, and helped to survive the data center outage
+  %         \item Delivered a tooltip to help users set the optimal limits for new transfers by gathering data over the past months, parsing it and calculating the average RAM usage for all types of transfers
+  %         \item Added new types of transfer sources and destinations by implementing a driver for the local \underline{MapReduce} system in \underline{Golang}
+  %     \end{itemize}}
+  % \resumeSubHeadingListEnd
+
+%--------PROGRAMMING SKILLS------------
+% \section{Advising}
+% \resumeSubHeadingListStart
+% \begin{tabular}{ll}
+% \textbf{Stealth LLM Startup} & \quad LLM instruction fine-tunning adviser \\
+% \end{tabular}
+% \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+    {}{}
+      {\href{https://hse.ru}{Higher School of Economics, FCS \ExternalLink}}{
+      }{
+      \vspace{5pt}
+      \newline{\textbf{Course:} Computer Science and Data Science}
+      \newline{\textbf{GPA:} 8}
+
+    \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\section{Projects}
+  \resumeSubHeadingListStart
+      % \resumeProjSubheading
+      % {}{}{\href{https://huggingface.co/Vikhrmodels}{Vikhr Models --- Open Source language-centric LLMs \ExternalLink}}{}
+      % {\skill{PyTorch} \skill{Distributed Computing} \skill{LLM} \skill{CUDA} }
+      %     \resumeDesc{
+      %     \begin{itemize}
+      %         \item Instruction finetunning researcher, data and bencmark pipelines developer
+      %         \item 200+ stars on HuggingFace Hub
+      %         \item 20000+ downloads
+      %     \end{itemize}
+      %     }
+
+   \resumeProjSubheading
+    {}{}{Venture Capital Research Platform (Merged with House of Pitch)}{}
+    {\skill{Torch} \skill{React} \skill{LLM} \skill{Distributed Computing}}
+    \resumeDesc{
+    \begin{itemize}
+        \item Developed a platform for rapid text analysis of pitches by leveraging distributed inference of custom fine-tuned LLMs.
+        \item Created data pipelines that parsed over 5TB of company data.
+    \end{itemize}
+    }
+
+
+  \resumeSubHeadingListEnd
+\resumeSubHeadingListEnd
+%-----------VOLUNTEERING-----------------
+\section{Conferences \& Hacks}
+\resumeSubHeadingListStart
+    \vspace{5pt}
+    \item Second author in LLM research \MYhref{https://aclanthology.org/2024.mrl-1.15/}{paper} at MRL (EMNLP Workshop 2024), Miami, USA. (Cited in A*)
+    % \vspace{-5pt}
+    \item International Young Scientists Conferences 2022, 2023, Serbia --- gold and bronze medals in Computer Science and Engineering.
+    % \vspace{-5pt}
+    \item Uber Global Data Hackathon 2023 --- LATAM regional winner.
+    % \vspace{-5pt}
+    \item Served as a Junior Math Expert at MSU during an international high school and student conference for 300+ students.
+\resumeSubHeadingListEnd
+
+% \resumeSubHeadingListEnd
+\end{document}
