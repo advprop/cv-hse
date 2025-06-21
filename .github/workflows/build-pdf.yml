@@ -18,18 +18,13 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build PDF with Docker
       run: |
         docker build -t latex-builder .
         docker run --rm -v $(pwd):/output latex-builder sh -c "cp main.pdf /output/"
-
-    - name: Upload PDF artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: cv-pdf
-        path: main.pdf
-        retention-days: 30
 
     - name: Check if PDF was created
       run: |
@@ -40,3 +35,11 @@ jobs:
           echo "PDF creation failed"
           exit 1
         fi
+
+    - name: Commit PDF to repository
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add main.pdf
+        git diff --staged --quiet || git commit -m "Auto-update CV PDF [skip ci]"
+        git push
